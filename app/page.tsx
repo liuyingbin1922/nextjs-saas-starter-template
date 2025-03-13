@@ -1,5 +1,6 @@
 import Header from "components/Header";
 import Hero from "components/Hero";
+import Cal from "components/Cal";
 import Features from "components/Features";
 import Section from "components/Section";
 import Footer from "components/Footer";
@@ -15,6 +16,7 @@ export default function Page() {
       <Header />
       <main>
         <Hero />
+        <Cal />
         <Features />
         <Section
           leftHalf={
@@ -48,7 +50,7 @@ export default function Page() {
           }
         />
         <Reviews />
-        <Download />
+        {/* <Download /> */}
       </main>
       <Footer />
     </div>
