@@ -22,12 +22,10 @@ export default function Page() {
           leftHalf={
             <>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white mb-4">
-                Effortlessly highlight the key features of your app
+                calculate transformer voltage quickly and accurately
               </h2>
               <p className="text-xl font-light">
-                Our app makes it easy to showcase your key features. With customizable sections, you can highlight the
-                most important aspects of your product. More to come.
-              </p>
+                Our free online Transformer Voltage Calculator helps you determine primary and secondary voltage, voltage ratio, and turns ratio with ease.              </p>
             </>
           }
           rightHalf={
