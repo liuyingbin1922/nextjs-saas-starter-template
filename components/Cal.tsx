@@ -42,15 +42,52 @@ export default function InductorCalculator() {
     variableType: "radius",
   });
   const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    setError(""); // Clear error when input changes
   };
 
   const calculateInductance = () => {
     const { length, turns, variable, thickness } = values;
-    const L = (4 * Math.PI * Math.pow(turns, 2) * Math.pow(variable, 2)) / (length * 1e7);
-    setResult(L.toFixed(6));
+    
+    // Input validation
+    if (!length || !turns || !variable || !thickness) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    const numLength = parseFloat(length);
+    const numTurns = parseFloat(turns);
+    const numVariable = parseFloat(variable);
+    const numThickness = parseFloat(thickness);
+
+    // Validate numeric values
+    if (isNaN(numLength) || isNaN(numTurns) || isNaN(numVariable) || isNaN(numThickness)) {
+      setError("All inputs must be valid numbers");
+      return;
+    }
+
+    // Validate positive values
+    if (numLength <= 0 || numTurns <= 0 || numVariable <= 0 || numThickness <= 0) {
+      setError("All values must be greater than 0");
+      return;
+    }
+
+    try {
+      const L = (4 * Math.PI * Math.pow(numTurns, 2) * Math.pow(numVariable, 2)) / (numLength * 1e7);
+      if (isFinite(L) && !isNaN(L)) {
+        setResult(L.toFixed(6));
+        setError("");
+      } else {
+        setError("Calculation resulted in an invalid value");
+        setResult(null);
+      }
+    } catch (err) {
+      setError("An error occurred during calculation");
+      setResult(null);
+    }
   };
 
   const handleClear = () => {
@@ -62,6 +99,7 @@ export default function InductorCalculator() {
       variableType: "radius",
     });
     setResult(null);
+    setError("");
   };
 
   return (
@@ -72,6 +110,11 @@ export default function InductorCalculator() {
         <Input name="turns" placeholder="Total Turns (N)" value={values.turns} onChange={handleChange} />
         <Input name="variable" placeholder="Variable (R/D/S)" value={values.variable} onChange={handleChange} />
         <Input name="thickness" placeholder="Coil Thickness (t)" value={values.thickness} onChange={handleChange} />
+        {error && (
+          <div className="text-red-500 text-sm py-2 px-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+            {error}
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-4">
           <Button onClick={calculateInductance}>Calculate</Button>
           <Button onClick={handleClear}>Clear</Button>
