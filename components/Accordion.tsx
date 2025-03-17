@@ -40,18 +40,18 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, content, isOpen, t
 
 const defaultAccordionItems = [
   {
-    title: "Sign up for free",
-    content: "Start your journey with a 34-day trial. It's easy no credit card or commitment.",
+    title: "🚀 Fast & Mobile-Friendly Interface",
+    content: "Our calculator is optimized for desktop, tablet, and mobile users, ensuring a smooth experience on any device.",
   },
   {
-    title: "Easy to use",
+    title: "🌍 100% Free & Online",
     content:
-      "Our app is designed to be user-friendly and easy to use. We want to provide a seamless experience for your users so that you can focus on what matters.",
+      "Use our web-based transformer calculator from anywhere. No software installation or registration needed!",
   },
   {
-    title: "Focus on what matters",
+    title: "📏 Accurate Voltage Ratio",
     content:
-      "With better financial management, you can reduce money-related stress and focus on what matters most. More to come.",
+      "Enter your transformer parameters and get precise voltage ratio, turns ratio, and step-up/step-down values instantly.",
   },
 ];
 

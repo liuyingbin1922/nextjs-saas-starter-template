@@ -41,8 +41,7 @@ export default function Page() {
                 Highlight the key features
               </h2>
               <p className="text-xl font-light">
-                Talk about some of the key features of your app that you want to highlight. Use the beautiful accordion
-                to highlight the key features of your app.
+                Our calculator has excellent advantages.
               </p>
             </div>
           }
