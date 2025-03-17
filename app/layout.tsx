@@ -4,8 +4,8 @@ import { ThemeProvider } from "next-themes";
 import "styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Next JS SaaS Starter Template",
-  description: "Next JS SaaS Starter Template",
+  title: "Transformer Voltage Calculator",
+  description: "a free online transformer voltage Calculator",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

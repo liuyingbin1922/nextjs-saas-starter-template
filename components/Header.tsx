@@ -7,7 +7,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="text-xl dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-            Next JS Starter Template
+          Transformer Voltage Calculator
           </Link>
         </div>
         <nav className="flex items-center">
