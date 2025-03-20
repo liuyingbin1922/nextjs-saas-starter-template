@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "@vercel/analytics": "^1.5.0",
     "gray-matter": "^4.0.3",
     "next": "^14.2.15",
     "next-themes": "^0.3.0",
