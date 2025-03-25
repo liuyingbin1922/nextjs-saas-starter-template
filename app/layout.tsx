@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react"
-
+import { Inter } from "next/font/google";
 import "styles/globals.css";
+import 'katex/dist/katex.min.css';
+// import 'katex/dist/contrib/copy-tex.min.css';
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Transformer Voltage Calculator",
@@ -21,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white dark:bg-black min-h-screen">
+      <body className={`${inter.className} bg-white dark:bg-black min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
         </ThemeProvider>

@@ -2,7 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import html from 'remark-html';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import remarkHtml from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import 'katex/dist/katex.min.css';
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', {
@@ -20,7 +24,10 @@ async function getPostContent(slug: string) {
 
   const { data: frontmatter, content } = matter(markdownWithMeta);
   const processedContent = await remark()
-    .use(html)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(rehypeKatex)
+    .use(remarkHtml)
     .process(content);
   const contentHtml = processedContent.toString();
 
@@ -56,7 +63,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           </div>
         </header>
         <div 
-          className="prose prose-lg dark:prose-invert max-w-none"
+          className="prose prose-lg dark:prose-invert max-w-none [&_.katex]:text-[1.1em] [&_.katex-display]:my-8 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-gray-300 [&_th]:p-2 [&_td]:border [&_td]:border-gray-300 [&_td]:p-2"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
       </article>
