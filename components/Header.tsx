@@ -7,7 +7,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="text-xl dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-          Transformer Voltage Calculator
+            Transformer Voltage Calculator
           </Link>
         </div>
         <nav className="flex items-center">
@@ -18,6 +18,14 @@ export default function Header() {
                 className="text-sm text-gray-800 dark:text-white px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products"
+                className="text-sm text-gray-800 dark:text-white px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                Products
               </Link>
             </li>
             <li>
