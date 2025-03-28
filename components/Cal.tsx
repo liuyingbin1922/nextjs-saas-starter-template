@@ -1,15 +1,40 @@
 "use client"
 import { useState } from "react";
 
-function Card({ children, className }) {
+interface CardProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface InputProps {
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+}
+
+interface Values {
+  length: string;
+  turns: string;
+  variable: string;
+  thickness: string;
+  variableType: string;
+}
+
+function Card({ children, className }: CardProps) {
   return <div className={`bg-white shadow-md rounded-lg p-4 ${className}`}>{children}</div>;
 }
 
-function CardContent({ children, className }) {
+function CardContent({ children, className }: CardProps) {
   return <div className={`mt-2 ${className}`}>{children}</div>;
 }
 
-function Input({ name, placeholder, value, onChange }) {
+function Input({ name, placeholder, value, onChange }: InputProps) {
   return (
     <input
       type="text"
@@ -22,7 +47,7 @@ function Input({ name, placeholder, value, onChange }) {
   );
 }
 
-function Button({ children, onClick }) {
+function Button({ children, onClick }: ButtonProps) {
   return (
     <button
       onClick={onClick}
@@ -34,17 +59,17 @@ function Button({ children, onClick }) {
 }
 
 export default function InductorCalculator() {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<Values>({
     length: "",
     turns: "10",
     variable: "5",
     thickness: "1",
     variableType: "radius",
   });
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState("");
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [e.target.name]: e.target.value });
     setError(""); // Clear error when input changes
   };
@@ -103,24 +128,49 @@ export default function InductorCalculator() {
   };
 
   return (
-    <Card className="p-6 max-w-md mx-auto mb-12">
-      <h2 className="text-xl font-bold mb-4">Inductor Calculator</h2>
-      <CardContent className="space-y-4">
-        <Input name="length" placeholder="Length (mm)" value={values.length} onChange={handleChange} />
-        <Input name="turns" placeholder="Total Turns (N)" value={values.turns} onChange={handleChange} />
-        <Input name="variable" placeholder="Variable (R/D/S)" value={values.variable} onChange={handleChange} />
-        <Input name="thickness" placeholder="Coil Thickness (t)" value={values.thickness} onChange={handleChange} />
-        {error && (
-          <div className="text-red-500 text-sm py-2 px-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
-            {error}
+    <div className="max-w-md mx-auto p-4">
+      <Card>
+        <h2 className="text-xl font-bold mb-4">Inductor Calculator</h2>
+        <CardContent>
+          <div className="space-y-4">
+            <Input
+              name="length"
+              placeholder="Length (cm)"
+              value={values.length}
+              onChange={handleChange}
+            />
+            <Input
+              name="turns"
+              placeholder="Number of turns"
+              value={values.turns}
+              onChange={handleChange}
+            />
+            <Input
+              name="variable"
+              placeholder="Variable value"
+              value={values.variable}
+              onChange={handleChange}
+            />
+            <Input
+              name="thickness"
+              placeholder="Thickness (mm)"
+              value={values.thickness}
+              onChange={handleChange}
+            />
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {result && (
+              <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+                <p className="text-lg font-semibold">Result:</p>
+                <p className="text-2xl font-bold text-blue-600">{result} H</p>
+              </div>
+            )}
+            <div className="flex space-x-4">
+              <Button onClick={calculateInductance}>Calculate</Button>
+              <Button onClick={handleClear}>Clear</Button>
+            </div>
           </div>
-        )}
-        <div className="grid grid-cols-2 gap-4">
-          <Button onClick={calculateInductance}>Calculate</Button>
-          <Button onClick={handleClear}>Clear</Button>
-        </div>
-        {result && <p className="text-lg font-semibold">Inductance: {result} H</p>}
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
