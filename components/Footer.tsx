@@ -100,14 +100,14 @@ const Footer = () => {
             <p className="text-sm">
               &copy; {currentYear} Transformer Voltage. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            {/* <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/sitemap.xml" className="text-sm hover:text-gray-300">
                 Sitemap
               </Link>
               <Link href="/robots.txt" className="text-sm hover:text-gray-300">
                 Robots.txt
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
